@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:layout_margin="8dp"
+    android:orientation="horizontal">
+
+    <com.sup.dev.android.views.views.ViewButton
+        android:id="@+id/vCancel"
+        style="@style/Button.Text"
+        android:layout_marginRight="8dp"/>
+
+    <com.sup.dev.android.views.views.ViewButton
+        android:id="@+id/vSave"
+        style="@style/Button.Text"/>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/focus"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/vTitleMenuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TouchableForeground"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="32dp">
+
+        <com.sup.dev.android.views.views.ViewAvatarTitle
+            android:id="@+id/vNavigationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:ViewAvatarTitle_chipMode="false" />
+
+    </LinearLayout>
+
+
+    <com.sup.dev.android.views.views.layouts.LayoutCorned
+        android:id="@+id/vTitleMenuCorners"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:layout_gravity="bottom"
+        android:background="?colorPrimarySurface"
+        app:LayoutCorned_cornedBL="false"
+        app:LayoutCorned_cornedBR="false"
+        app:LayoutCorned_cornedSize="16dp"
+        app:LayoutCorned_cornedTL="true"
+        app:LayoutCorned_cornedTR="true" />
+
+</FrameLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Root.Content"
+    android:background="?colorPrimaryVariant">
+
+    <ImageView
+        android:id="@+id/vLogo"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="128dp"
+        android:src="@drawable/logo_alpha"/>
+
+
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|center">
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="64dp"
+            android:orientation="vertical">
+
+            <com.sup.dev.android.views.settings.SettingsField
+                android:id="@+id/vEmail"
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.sup.dev.android.views.settings.SettingsField
+                android:id="@+id/vPass"
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <com.sup.dev.android.views.views.ViewButton
+                    android:id="@+id/vRegistration"
+                    style="@style/Button.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"/>
+
+                <View
+                    android:id="@+id/vSpace"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"/>
+
+                <com.sup.dev.android.views.views.ViewButton
+                    android:id="@+id/vEnter"
+                    style="@style/Button.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

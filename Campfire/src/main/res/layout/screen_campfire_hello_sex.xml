@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sup.dev.android.views.views.ViewButton
+        android:id="@+id/vNext"
+        style="@style/Button.Outlined"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="56dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/vText_1"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout"
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp">
+
+            <EditText
+                android:id="@+id/vLogin"
+                style="@style/Field"
+                android:inputType="textCapWords" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="48dp"
+            android:background="?colorContentScreen"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/vHe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="22dp">
+
+                <ImageView
+                    android:id="@+id/vImage_he"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="32dp" />
+
+                <com.sup.dev.android.views.views.ViewButton
+                    android:id="@+id/vText_he"
+                    style="@style/Button.Outlined"
+                    android:layout_width="70dp"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:textSize="11sp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_gravity="bottom|center"/>
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/vShe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp">
+
+                <ImageView
+                    android:id="@+id/vImage_she"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="32dp" />
+
+                <com.sup.dev.android.views.views.ViewButton
+                    android:id="@+id/vText_she"
+                    style="@style/Button.Outlined"
+                    android:layout_width="70dp"
+                    android:gravity="center"
+                    android:textSize="11sp"
+                    android:minHeight="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_gravity="bottom|center" />
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
+
+

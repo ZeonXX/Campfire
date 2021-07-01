@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Root.Content">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/AppBar">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/Toolbar"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/Scroll">
+
+        <LinearLayout
+            android:id="@+id/vSettingsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vFiltersTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vNotifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_notifications_white_24dp"
+                app:Settings_icon_background="@color/green_500"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.Settings
+                android:id="@+id/vSalient"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_access_time_white_24dp"
+                app:Settings_icon_background="@color/red_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vSalientAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_music_note_white_18dp"
+                app:Settings_icon_background="@color/teal_900"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vSalientOnTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_alarm_white_24dp"
+                app:Settings_icon_background="@color/yellow_700"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vWatchPost"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_email_white_24dp"
+                app:Settings_icon_background="@color/deep_purple_700"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vAutoReadNotifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_cached_white_24dp"
+                app:Settings_icon_background="@color/teal_700"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vAddRelayRacesTitle"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vUserActivitiesSubscribe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_email_white_24dp"
+                app:Settings_icon_background="@color/orange_400"/>
+
+            <com.sup.dev.android.views.settings.Settings
+                android:id="@+id/vUserActivitiesAllowed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_flag_white_24dp"
+                app:Settings_icon_background="@color/deep_purple_700"
+                app:Settings_icon_filter="@color/white"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vAppTitle"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vFollows"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_group_white_24dp"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_background="@color/blue_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vAchievements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_star_white_24dp"
+                app:Settings_icon_background="@color/orange_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_help_white_24dp"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_background="@color/pink_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vPublicationsTitle"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_mode_comment_white_24dp"
+                app:Settings_icon_background="@color/teal_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vKarma"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_star_white_24dp"
+                app:Settings_icon_background="@color/green_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vCommentsAnswers"
+                app:Settings_lineVisible="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_mode_comment_white_24dp"
+                app:Settings_icon_background="@color/teal_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vFollowsPosts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_group_white_24dp"
+                app:Settings_icon_background="@color/blue_700"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vImportant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_info_outline_white_24dp"
+                app:Settings_icon_background="@color/deep_purple_700"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vChatTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vChatMessages"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_group_white_24dp"
+                app:Settings_icon_background="@color/green_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vChatAnswers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_person_white_18dp"
+                app:Settings_icon_background="@color/red_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vPM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_person_white_18dp"
+                app:Settings_icon_background="@color/blue_500"
+                app:Settings_lineVisible="false"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

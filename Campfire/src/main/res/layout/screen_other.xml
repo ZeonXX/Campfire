@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Root.Content"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout style="@style/AppBar">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/Toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView style="@style/Scroll">
+
+        <LinearLayout
+            android:id="@+id/vSettingsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vNotifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_notifications_white_24dp"
+                app:Settings_icon_background="@color/green_500"
+                app:Settings_lineVisible="false" />
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_settings_white_24dp"
+                app:Settings_icon_background="@color/orange_500"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_help_white_24dp"
+                app:Settings_icon_background="@color/deep_orange_500"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_star_white_24dp"
+                app:Settings_icon_background="@color/pink_500"
+                app:Settings_lineVisible="false" />
+
+            <com.sup.dev.android.views.settings.Settings
+                android:id="@+id/vLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_exit_to_app_white_24dp"
+                app:Settings_icon_background="@color/red_500"
+                app:Settings_lineVisible="false"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

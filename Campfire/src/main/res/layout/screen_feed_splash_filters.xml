@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <ScrollView
+        style="@style/Scroll.Splash">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      xmlns:app="http://schemas.android.com/apk/res-auto"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical">
+
+            <com.sup.dev.android.views.settings.Settings
+                android:id="@+id/vOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsCheckBox
+                android:id="@+id/vImportant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.Settings
+                android:id="@+id/vLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.Settings
+                android:id="@+id/vCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <com.sup.dev.android.views.views.ViewButton
+                    android:id="@+id/vCancel"
+                    style="@style/Button.Text"
+                    android:layout_marginEnd="8dp"/>
+
+                <com.sup.dev.android.views.views.ViewButton
+                    android:id="@+id/vEnter"
+                    style="@style/Button.Text"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

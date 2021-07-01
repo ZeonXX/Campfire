@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sup.dev.android.views.views.ViewButton
+        android:id="@+id/vNext"
+        style="@style/Button.Outlined"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="56dp" />
+
+    <TextView
+        android:id="@+id/vSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="18dp" />
+
+
+    <TextView
+        android:id="@+id/vTitle"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="72dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar1_frame"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar1"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar2_frame"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar2"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar3_frame"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar3"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar4_frame"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar4"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp">
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar5_frame"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar5"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar6_frame"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+                <com.sup.dev.android.views.views.ViewAvatar
+                    android:id="@+id/vAvatar6"
+                    android:layout_gravity="center"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"/>
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
+
+

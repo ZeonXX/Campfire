@@ -1,0 +1,27 @@
+[submodule "DevSupJava"]
+	path = DevSupJava
+	url = https://github.com/ZeonXX/DevSupJava.git
+[submodule "DevSupJavaPc"]
+	path = DevSupJavaPc
+	url = https://github.com/ZeonXX/DevSupJavaPc.git
+[submodule "DevSupAndroid"]
+	path = DevSupAndroid
+	url = https://github.com/ZeonXX/DevSupAndroid.git
+[submodule "CampfireApi"]
+	path = CampfireApi
+	url = https://github.com/ZeonXX/CampfireApi.git
+[submodule "CampfireApiMedia"]
+	path = CampfireApiMedia
+	url = https://github.com/ZeonXX/CampfireApiMedia.git
+[submodule "CampfireServer"]
+	path = CampfireServer
+	url = https://github.com/ZeonXX/CampfireServer.git
+[submodule "CampfireServerMedia"]
+	path = CampfireServerMedia
+	url = https://github.com/ZeonXX/CampfireServerMedia.git
+[submodule "CampfireSDK"]
+	path = CampfireSDK
+	url = https://github.com/ZeonXX/CampfireSDK.git
+[submodule "DevSupAndroidGoogle"]
+	path = DevSupAndroidGoogle
+	url = https://github.com/ZeonXX/DevSupAndroidGoogle.git

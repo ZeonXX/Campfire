@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Root.Content">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/AppBar">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/Toolbar"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/Scroll">
+
+        <LinearLayout
+            android:id="@+id/vSettingsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+
+            <com.sup.dev.android.views.settings.SettingsSelection
+                android:id="@+id/vTheme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_background="@color/purple_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsSelection
+                android:id="@+id/vActivityType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_background="@color/indigo_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vFullscreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_background="@color/indigo_800"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vProfileListStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon_background="@color/lime_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vGrapTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vCircles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_account_circle_white_24dp"
+                app:Settings_icon_background="@color/green_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsSeek
+                android:id="@+id/vRounding"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_account_box_white_24dp"
+                app:Settings_icon_background="@color/deep_orange_500"/>
+
+            <com.sup.dev.android.views.settings.SettingsSeek
+                android:id="@+id/vRoundingChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_mode_comment_white_24dp"
+                app:Settings_icon_background="@color/cyan_700"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vChatBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_insert_photo_white_24dp"
+                app:Settings_icon_background="@color/light_green_500"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vHolidayTitle"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vNewYearAvatars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_account_circle_white_24dp"
+                app:Settings_icon_background="@color/light_blue_700"/>
+
+            <com.sup.dev.android.views.settings.SettingsSeek
+                android:id="@+id/vNewYearSnow"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"/>
+
+            <com.sup.dev.android.views.settings.SettingsSwitcher
+                android:id="@+id/vNewYearProfileAnimation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"
+                app:Settings_icon="@drawable/ic_burst_mode_white_24dp"
+                app:Settings_icon_background="@color/cyan_900"/>
+
+            <com.sup.dev.android.views.settings.SettingsTitle
+                android:id="@+id/vAppOtherTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.Settings
+                android:id="@+id/vDefault"
+                android:layout_width="match_parent"
+                app:Settings_lineVisible="false"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

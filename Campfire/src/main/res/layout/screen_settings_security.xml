@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Root.Content"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        style="@style/AppBar">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/Toolbar"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/Scroll">
+
+        <LinearLayout
+            android:id="@+id/vSettingsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_email_white_24dp"
+                app:Settings_icon_background="@color/light_green_800"
+                app:Settings_lineVisible="false" />
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_person_white_24dp"
+                app:Settings_icon_background="@color/light_blue_700"
+                app:Settings_lineVisible="false" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

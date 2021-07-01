@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/vTextFilters"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"
+            android:textColor="?colorOnPrimary" />
+
+        <com.sup.dev.android.views.settings.SettingsCheckBox
+            android:id="@+id/vGames"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+
+        <com.sup.dev.android.views.settings.SettingsCheckBox
+            android:id="@+id/vAnime"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+
+        <com.sup.dev.android.views.settings.SettingsCheckBox
+            android:id="@+id/vMovies"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"/>
+
+        <com.sup.dev.android.views.settings.SettingsCheckBox
+            android:id="@+id/vMusic"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:Settings_lineVisible="false"/>
+
+    </LinearLayout>
+
+    <com.sup.dev.android.views.views.ViewButton
+        android:id="@+id/vNext"
+        style="@style/Button.Outlined"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="56dp" />
+
+</FrameLayout>

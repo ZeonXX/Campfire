@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/vImage"
+            android:layout_width="168dp"
+            android:layout_height="168dp"
+            android:layout_gravity="center"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/vTitle"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/vText"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <com.sup.dev.android.views.views.ViewButton
+        android:id="@+id/vNext"
+        style="@style/Button.Outlined"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="56dp"/>
+
+
+</FrameLayout>

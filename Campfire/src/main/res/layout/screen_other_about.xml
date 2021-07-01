@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Root.Content"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout style="@style/AppBar">
+
+        <androidx.appcompat.widget.Toolbar
+            style="@style/Toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView style="@style/Scroll">
+
+        <LinearLayout
+            android:id="@+id/vSettingsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_help_white_24dp"
+                app:Settings_icon_background="@color/blue_500"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vRulesUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_gavel_white_24dp"
+                app:Settings_icon_background="@color/green_500"
+                app:Settings_icon_padding="9dp"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vRulesModerator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_gavel_white_24dp"
+                app:Settings_icon_background="@color/blue_500"
+                app:Settings_icon_padding="9dp"
+                app:Settings_lineVisible="false" />
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vAdminsEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_security_white_24dp"
+                app:Settings_icon_background="@color/orange_500"
+                app:Settings_lineVisible="false" />
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vPrison"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_security_white_24dp"
+                app:Settings_icon_background="@color/light_blue_800"
+                app:Settings_lineVisible="false" />
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vStatistic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_trending_up_white_24dp"
+                app:Settings_icon_background="@color/orange_500"
+                app:Settings_icon_padding="9dp"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vCreators"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_rowing_white_24dp"
+                app:Settings_icon_background="@color/indigo_500"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vStartScreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_play_arrow_white_24dp"
+                app:Settings_icon_background="@color/brown_500"
+                app:Settings_lineVisible="false"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vGallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_landscape_white_24dp"
+                app:Settings_icon_background="@color/light_blue_700"
+                app:Settings_lineVisible="false" />
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_email_white_24dp"
+                app:Settings_icon_background="@color/pink_500"
+                app:Settings_lineVisible="false"
+                app:Settings_subtitle="zeooon@ya.ru"/>
+
+            <com.sup.dev.android.views.settings.SettingsArrow
+                android:id="@+id/vPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:Settings_icon="@drawable/ic_security_white_24dp"
+                app:Settings_icon_background="@color/blue_500"
+                app:Settings_lineVisible="false" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
