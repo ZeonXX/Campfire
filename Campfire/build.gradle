@@ -3,13 +3,13 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 12510
-        versionName "1.251"
+        targetSdkVersion 30
+        versionCode 12600
+        versionName "1.260"
         applicationId "com.dzen.campfire"
     }
 
