@@ -25,7 +25,8 @@
             android:name="com.dzen.campfire.app.AppActivity"
             android:launchMode="singleInstance"
             android:configChanges="orientation|screenSize"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -55,7 +56,8 @@
 
         </activity>
 
-        <service android:name="com.sayzen.devsupandroidgoogle.GoogleNotifications">
+        <service android:name="com.sayzen.devsupandroidgoogle.GoogleNotifications"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
