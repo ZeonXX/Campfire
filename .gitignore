@@ -1,3 +1,5 @@
+secrets/
+
 #built application files
 *.apk
 *.ap_
