@@ -2,6 +2,8 @@ secrets/
 build/
 CampfireServer/build/
 CampfireServer/build/*
+CampfireServerMedia/build/
+CampfireServerMedia/build/*
 
 #built application files
 *.apk
