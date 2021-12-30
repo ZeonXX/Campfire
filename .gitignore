@@ -1,6 +1,10 @@
 secrets/
 build/
 */build/
+**/build/
+*/*/build/
+**/*/build/
+*/*/*/build/
 
 #built application files
 *.apk
