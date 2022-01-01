@@ -24,6 +24,7 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
     private val vAppTitle: Settings = findViewById(R.id.vAppTitle)
     private val vActionsTitle: Settings = findViewById(R.id.vActionsTitle)
     private val vVoiceTitle: Settings = findViewById(R.id.vVoiceTitle)
+    private val vChatsTitle: Settings = findViewById(R.id.vChatsTitle)
     private val vStyle: Settings = findViewById(R.id.vStyle)
     private val vSecurity: Settings = findViewById(R.id.vSecurity)
     private val vLongPlus: Settings = findViewById(R.id.vLongPlus)
@@ -53,6 +54,7 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
         vVoiceAutoLock.setTitle(t(API_TRANSLATE.settings_voice_messages_auto_lock))
         vVoiceAutoSend.setTitle(t(API_TRANSLATE.settings_voice_messages_auto_send))
         vVoiceIgnore.setTitle(t(API_TRANSLATE.settings_voice_messages_dont_receive))
+        vChatsTitle.setTitle(t(API_TRANSLATE.app_chats))
         vConferenceAllow.setTitle(t(API_TRANSLATE.settings_allow_adding_to_conferences))
 
         ImageLoader.load(API_RESOURCES.CAMPFIRE_IMAGE_4).into(vAnonRates.vIcon)
