@@ -24,6 +24,7 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
     private val vAppTitle: Settings = findViewById(R.id.vAppTitle)
     private val vActionsTitle: Settings = findViewById(R.id.vActionsTitle)
     private val vVoiceTitle: Settings = findViewById(R.id.vVoiceTitle)
+    private val vChatsTitle: Settings = findViewById(R.id.vChatsTitle)
     private val vStyle: Settings = findViewById(R.id.vStyle)
     private val vSecurity: Settings = findViewById(R.id.vSecurity)
     private val vLongPlus: Settings = findViewById(R.id.vLongPlus)
@@ -33,6 +34,7 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
     private val vVoiceAutoSend: SettingsSwitcher = findViewById(R.id.vVoiceAutoSend)
     private val vVoiceIgnore: SettingsSwitcher = findViewById(R.id.vVoiceIgnore)
     private val vAnonRates: SettingsSwitcher = findViewById(R.id.vAnonRates)
+    private val vConferenceAllow: SettingsSwitcher = findViewById(R.id.vConferenceAllow)
 
     init {
         disableShadows()
@@ -52,6 +54,8 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
         vVoiceAutoLock.setTitle(t(API_TRANSLATE.settings_voice_messages_auto_lock))
         vVoiceAutoSend.setTitle(t(API_TRANSLATE.settings_voice_messages_auto_send))
         vVoiceIgnore.setTitle(t(API_TRANSLATE.settings_voice_messages_dont_receive))
+        vChatsTitle.setTitle(t(API_TRANSLATE.app_chats))
+        vConferenceAllow.setTitle(t(API_TRANSLATE.settings_allow_adding_to_conferences))
 
         ImageLoader.load(API_RESOURCES.CAMPFIRE_IMAGE_4).into(vAnonRates.vIcon)
 
@@ -79,6 +83,7 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
         vVoiceAutoSend.setOnClickListener { ControllerSettings.voiceMessagesAutoSend = vVoiceAutoSend.isChecked() }
         vVoiceIgnore.setOnClickListener { ControllerSettings.voiceMessagesIgnore = vVoiceIgnore.isChecked() }
         vAnonRates.setOnClickListener { ControllerSettings.anonRates = vAnonRates.isChecked() }
+        vConferenceAllow.setOnClickListener { ControllerSettings.allowAddingToConferences = vConferenceAllow.isChecked() }
 
         updateValues()
     }
@@ -91,9 +96,9 @@ class SSettings : Screen(R.layout.screen_settings_actions) {
         vVoiceAutoSend.setChecked(ControllerSettings.voiceMessagesAutoSend)
         vVoiceIgnore.setChecked(ControllerSettings.voiceMessagesIgnore)
         vAnonRates.setChecked(ControllerSettings.anonRates)
+        vConferenceAllow.setChecked(ControllerSettings.allowAddingToConferences)
 
         vAnonRates.isEnabled = ControllerApi.can(API.LVL_ANONYMOUS)
-
     }
 
     private fun changeLanguage() {
