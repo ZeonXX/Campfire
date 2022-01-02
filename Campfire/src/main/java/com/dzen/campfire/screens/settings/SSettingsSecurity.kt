@@ -102,7 +102,7 @@ class SSettingsSecurity(
                 .setOnCancel(t(API_TRANSLATE.app_cancel))
                 .setOnEnter(t(API_TRANSLATE.app_change)) { w, t1, t2 ->
                     val passwordOldMD5 = ToolsCryptography.md5(t1)
-                    val passwordNewMD5 = ToolsCryptography.md5(t1)
+                    val passwordNewMD5 = ToolsCryptography.md5(t2)
                     ApiRequestsSupporter.executeEnabled(w, RAccountsChangePassword(email, passwordOldMD5, passwordNewMD5)) { r ->
                         ToolsToast.show(t(API_TRANSLATE.app_done))
                         ControllerApiLogin.setEmailToken(email, passwordNewMD5)
