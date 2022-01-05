@@ -22,6 +22,7 @@ import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.navigator.Navigator
 import com.sup.dev.android.tools.ToolsBitmap
 import com.sup.dev.android.tools.ToolsResources
+import com.sup.dev.android.tools.ToolsStorage
 import com.sup.dev.android.tools.ToolsToast
 import com.sup.dev.java.libs.debug.err
 import com.sup.dev.java.tools.ToolsThreads
@@ -99,70 +100,75 @@ class SIntroConnection : Screen(R.layout.screen_intro_connection){
 
     private fun sendLoginRequestNow() {
         setState(State.PROGRESS)
-        RAccountsLogin(ControllerNotifications.token, ControllerApi.getLanguageId())
-                .onComplete { r ->
-                    ControllerABParams.set(r.ABParams)
-                    ControllerApi.setVersion(r.version, r.supported)
-                    if (ControllerApi.isUnsupportedVersion()) {
-                        Navigator.set(SUpdate())
+        val languageId = ControllerApi.getLanguageId()
+        RAccountsLogin(
+                ControllerNotifications.token, languageId,
+                ControllerTranslate.getSavedHash(languageId),
+                ControllerTranslate.getSavedHash(API.LANGUAGE_EN)
+        ).onComplete { r ->
+            ControllerABParams.set(r.ABParams)
+            ControllerApi.setVersion(r.version, r.supported)
+            if (ControllerApi.isUnsupportedVersion()) {
+                Navigator.set(SUpdate())
+            } else {
+                ControllerApi.setCurrentAccount(r.account ?: Account(), r.hasSubscribes, r.protoadmins)
+
+                if (r.account == null) {
+                    if (ControllerGoogleAuth.containsToken() && ControllerApiLogin.isLoginGoogle())
+                        registration_google()
+                    else {
+                        ToolsToast.show(t(API_TRANSLATE.error_cant_login))
+                        Navigator.set(SIntroAccount())
+                    }
+                } else {
+                    val lastSettingsAccountId = ControllerSettings.getLastSettingsAccountId()
+                    ControllerTranslate.addMap(r.translate_language_id, r.translate_map, r.translateMapHash)
+                    ControllerTranslate.addMap(API.LANGUAGE_EN, r.translate_map_eng, r.translateMapHashEng)
+                    ControllerSettings.setSettings(r.account!!.id, r.settings)
+                    ControllerApi.setServerTime(r.serverTime)
+                    ToolsThreads.main(1000) { loadInfo() }
+                    if (lastSettingsAccountId == r.account!!.id) {
+                        toFeed()
                     } else {
-                        ControllerApi.setCurrentAccount(r.account ?: Account(), r.hasSubscribes, r.protoadmins)
-
-                        if (r.account == null) {
-                            if (ControllerGoogleAuth.containsToken() && ControllerApiLogin.isLoginGoogle())
-                                registration_google()
-                            else {
-                                ToolsToast.show(t(API_TRANSLATE.error_cant_login))
-                                Navigator.set(SIntroAccount())
-                            }
-                        } else {
-                            val lastSettingsAccountId = ControllerSettings.getLastSettingsAccountId()
-                            ControllerTranslate.addMap(r.translate_language_id, r.translate_map)
-                            ControllerTranslate.addMap(API.LANGUAGE_EN, r.translate_map_eng)
-                            ControllerSettings.setSettings(r.account!!.id, r.settings)
-                            ControllerApi.setServerTime(r.serverTime)
-                            ToolsThreads.main(1000) { loadInfo() }
-                            if (lastSettingsAccountId == r.account!!.id) {
-                                toFeed()
-                            } else {
-                                App.activity().recreate()
-                                Navigator.set(SIntro())
-                            }
-                        }
-
+                        App.activity().recreate()
+                        Navigator.set(SIntro())
                     }
                 }
-                .onError {
-                    setState(State.ERROR)
-                }
-                .send(api)
+
+            }
+        }.onError {
+            setState(State.ERROR)
+        }.send(api)
     }
 
 
     private fun sendLoginRequestBackground() {
-        RAccountsLogin(ControllerNotifications.token, ControllerApi.getLanguageId())
-                .onComplete { r ->
-                    ControllerABParams.set(r.ABParams)
-                    ControllerApi.setVersion(r.version, r.supported)
-                    if (ControllerApi.isUnsupportedVersion()) {
-                        ControllerApi.setCurrentAccount(Account(), r.hasSubscribes, r.protoadmins)
-                        Navigator.set(SUpdate())
-                    } else {
-                        ControllerApi.setCurrentAccount(r.account ?: Account(), r.hasSubscribes, r.protoadmins)
+        val languageId = ControllerApi.getLanguageId()
+        RAccountsLogin(
+                ControllerNotifications.token, languageId,
+                ControllerTranslate.getSavedHash(languageId),
+                ControllerTranslate.getSavedHash(API.LANGUAGE_EN)
+        ).onComplete { r ->
+            ControllerABParams.set(r.ABParams)
+            ControllerApi.setVersion(r.version, r.supported)
+            if (ControllerApi.isUnsupportedVersion()) {
+                ControllerApi.setCurrentAccount(Account(), r.hasSubscribes, r.protoadmins)
+                Navigator.set(SUpdate())
+            } else {
+                ControllerApi.setCurrentAccount(r.account ?: Account(), r.hasSubscribes, r.protoadmins)
 
-                        if (r.account == null) {
-                            Navigator.set(SIntro())
-                        } else {
-                            ControllerTranslate.addMap(r.translate_language_id, r.translate_map)
-                            ControllerTranslate.addMap(API.LANGUAGE_EN, r.translate_map_eng)
-                            ControllerSettings.setSettings(r.account!!.id, r.settings)
-                            if (feedCategories.isNotEmpty()) ControllerSettings.feedCategories = feedCategories
-                            ControllerApi.setServerTime(r.serverTime)
-                            ToolsThreads.main(1000) { loadInfo() }
-                        }
-                    }
+                if (r.account == null) {
+                    Navigator.set(SIntro())
+                } else {
+                    ControllerTranslate.addMap(r.translate_language_id, r.translate_map, r.translateMapHash)
+                    ControllerTranslate.addMap(API.LANGUAGE_EN, r.translate_map_eng, r.translateMapHashEng)
+                    ControllerSettings.setSettings(r.account!!.id, r.settings)
+                    if (feedCategories.isNotEmpty()) ControllerSettings.feedCategories = feedCategories
+                    ControllerApi.setServerTime(r.serverTime)
+                    ToolsThreads.main(1000) { loadInfo() }
                 }
-                .send(api)
+            }
+        }.send(api)
     }
 
     private fun toFeed() {
