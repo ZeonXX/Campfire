@@ -59,9 +59,9 @@ class SIntroEmail : Screen(R.layout.screen_intro_email){
     fun enter(){
         val password = vPass.getText()
         val email = vEmail.getText()
-        val passwordMD5 = ToolsCryptography.md5(password)
+        val passwordSha512 = ToolsCryptography.getSHA512(password)
 
-        ControllerApiLogin.setEmailToken(email, passwordMD5)
+        ControllerApiLogin.setEmailToken(email, passwordSha512)
         ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
         Navigator.set(SIntroConnection())
     }

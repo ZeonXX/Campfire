@@ -82,17 +82,17 @@ class SIntroEmailRegistration(
     fun onEnter(){
         val password = vPass1.getText()
         val email = vEmail.getText()
-        val passwordMD5 = ToolsCryptography.md5(password)
+        val passwordSha512 = ToolsCryptography.getSHA512(password)
 
         if(addMode){
-            ApiRequestsSupporter.executeProgressDialog(RAccountsAddEmail(email, passwordMD5)) { r ->
-                ControllerApiLogin.setEmailToken(email, passwordMD5)
+            ApiRequestsSupporter.executeProgressDialog(RAccountsAddEmail(email, passwordSha512)) { r ->
+                ControllerApiLogin.setEmailToken(email, passwordSha512)
                 ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
                 Navigator.remove(this)
             }
         }else {
-            ApiRequestsSupporter.executeProgressDialog(RAccountsRegistrationEmail(email, passwordMD5, ControllerApi.getLanguageId())) { r ->
-                ControllerApiLogin.setEmailToken(email, passwordMD5)
+            ApiRequestsSupporter.executeProgressDialog(RAccountsRegistrationEmail(email, passwordSha512, ControllerApi.getLanguageId())) { r ->
+                ControllerApiLogin.setEmailToken(email, passwordSha512)
                 ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
                 ToolsStorage.put(CampfireConstants.CHECK_RULES_ACCEPTED, true)
                 Navigator.set(SIntroConnection())

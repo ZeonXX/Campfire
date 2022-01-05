@@ -4,33 +4,21 @@ package com.dzen.campfire.screens.settings
 import android.text.InputType
 import com.dzen.campfire.R
 import com.dzen.campfire.api.API
-import com.dzen.campfire.api.API_RESOURCES
 import com.dzen.campfire.api.API_TRANSLATE
 import com.dzen.campfire.api.requests.accounts.RAccountsAddGoogle
 import com.dzen.campfire.api.requests.accounts.RAccountsChangePassword
 import com.dzen.campfire.api.requests.accounts.RAccountsGetEmail
-import com.dzen.campfire.api.requests.accounts.RAccountsRegistration.Companion.E_GOOGLE_ID_EXIST
-import com.dzen.campfire.api.requests.fandoms.RFandomsGet
-import com.dzen.campfire.screens.intro.SIntroAccount
-import com.dzen.campfire.screens.intro.SIntroConnection
 import com.dzen.campfire.screens.intro.SIntroEmailRegistration
 import com.sayzen.campfiresdk.controllers.*
 import com.sayzen.campfiresdk.models.events.account.EventAccountEmailChanged
 import com.sayzen.campfiresdk.models.events.account.EventAccountGoogleIdChanged
-import com.sayzen.campfiresdk.screens.fandoms.search.SFandomsSearch
-import com.sayzen.campfiresdk.screens.fandoms.view.SFandom
 import com.sayzen.campfiresdk.support.ApiRequestsSupporter
 import com.sayzen.devsupandroidgoogle.ControllerGoogleAuth
-import com.sup.dev.android.app.SupAndroid
-import com.sup.dev.android.libs.image_loader.ImageLoader
 import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.navigator.NavigationAction
 import com.sup.dev.android.libs.screens.navigator.Navigator
-import com.sup.dev.android.tools.ToolsAndroid
 import com.sup.dev.android.tools.ToolsToast
 import com.sup.dev.android.views.settings.Settings
-import com.sup.dev.android.views.settings.SettingsSwitcher
-import com.sup.dev.android.views.splash.SplashAlert
 import com.sup.dev.android.views.splash.SplashFieldTwo
 import com.sup.dev.java.libs.eventBus.EventBus
 import com.sup.dev.java.tools.ToolsCryptography
@@ -101,11 +89,11 @@ class SSettingsSecurity(
                 .setMin_2(API.ACCOUNT_PASSOWRD_L_MIN)
                 .setOnCancel(t(API_TRANSLATE.app_cancel))
                 .setOnEnter(t(API_TRANSLATE.app_change)) { w, t1, t2 ->
-                    val passwordOldMD5 = ToolsCryptography.md5(t1)
-                    val passwordNewMD5 = ToolsCryptography.md5(t2)
-                    ApiRequestsSupporter.executeEnabled(w, RAccountsChangePassword(email, passwordOldMD5, passwordNewMD5)) { r ->
+                    val passwordOldSha512 = ToolsCryptography.getSHA512(t1)
+                    val passwordNewSha512 = ToolsCryptography.getSHA512(t2)
+                    ApiRequestsSupporter.executeEnabled(w, RAccountsChangePassword(email, passwordOldSha512, passwordNewSha512)) { r ->
                         ToolsToast.show(t(API_TRANSLATE.app_done))
-                        ControllerApiLogin.setEmailToken(email, passwordNewMD5)
+                        ControllerApiLogin.setEmailToken(email, passwordNewSha512)
                     }
                 }
                 .asSheetShow()
