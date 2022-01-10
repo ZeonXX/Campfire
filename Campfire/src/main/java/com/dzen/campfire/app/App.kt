@@ -25,7 +25,7 @@ class App : Application() {
     companion object {
 
         fun activity() = SupAndroid.activity as AppActivity
-        fun isDebug() = true && ToolsAndroid.isDebug()
+        fun isDebug() = false && ToolsAndroid.isDebug()
     }
 
     override fun onLowMemory() {
