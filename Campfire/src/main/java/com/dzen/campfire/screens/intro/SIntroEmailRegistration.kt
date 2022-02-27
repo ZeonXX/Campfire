@@ -7,10 +7,12 @@ import com.dzen.campfire.R
 import com.dzen.campfire.api.API
 import com.dzen.campfire.api.API_TRANSLATE
 import com.dzen.campfire.api.requests.accounts.RAccountsAddEmail
+import com.dzen.campfire.api.requests.accounts.RAccountsGetCaptchaSiteKey
 import com.dzen.campfire.api.requests.accounts.RAccountsRegistrationEmail
 import com.sayzen.campfiresdk.app.CampfireConstants
 import com.sayzen.campfiresdk.controllers.ControllerApi
 import com.sayzen.campfiresdk.controllers.ControllerApiLogin
+import com.sayzen.campfiresdk.controllers.ControllerCaptcha
 import com.sayzen.campfiresdk.controllers.t
 import com.sayzen.campfiresdk.screens.other.rules.SGoogleRules
 import com.sayzen.campfiresdk.support.ApiRequestsSupporter
@@ -18,6 +20,7 @@ import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.navigator.Navigator
 import com.sup.dev.android.tools.ToolsResources
 import com.sup.dev.android.tools.ToolsStorage
+import com.sup.dev.android.tools.ToolsToast
 import com.sup.dev.android.tools.ToolsView
 import com.sup.dev.android.views.settings.SettingsField
 import com.sup.dev.android.views.views.ViewText
@@ -90,12 +93,44 @@ class SIntroEmailRegistration(
                 ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
                 Navigator.remove(this)
             }
-        }else {
-            ApiRequestsSupporter.executeProgressDialog(RAccountsRegistrationEmail(email, passwordSha512, ControllerApi.getLanguageId())) { r ->
-                ControllerApiLogin.setEmailToken(email, passwordSha512)
-                ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
-                ToolsStorage.put(CampfireConstants.CHECK_RULES_ACCEPTED, true)
-                Navigator.set(SIntroConnection())
+        } else {
+            val progressDialog = ToolsView.showProgressDialog()
+            ApiRequestsSupporter.execute(RAccountsGetCaptchaSiteKey()) {
+                ControllerCaptcha.setSiteKey(it.siteKey)
+                ControllerCaptcha.showChallenge(
+                    context = this.context,
+                    onSuccess = { captchaKey ->
+                        ApiRequestsSupporter.execute(
+                            RAccountsRegistrationEmail(
+                                email, passwordSha512,
+                                ControllerApi.getLanguageId(),
+                                captchaKey
+                            )
+                        ) {
+                            ControllerApiLogin.setEmailToken(email, passwordSha512)
+                            ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
+                            ToolsStorage.put(CampfireConstants.CHECK_RULES_ACCEPTED, true)
+                            Navigator.set(SIntroConnection())
+                        }.onFinish {
+                            progressDialog.hide()
+                        }
+                    },
+                    onError = { captchaError ->
+                        progressDialog.hide()
+                        when (captchaError) {
+                            ControllerCaptcha.CaptchaError.NETWORK ->
+                                ToolsToast.show(t(API_TRANSLATE.error_network))
+                            ControllerCaptcha.CaptchaError.TIMEOUT ->
+                                ToolsToast.show(t(API_TRANSLATE.error_unknown))
+                            ControllerCaptcha.CaptchaError.CLOSED -> {}
+                            ControllerCaptcha.CaptchaError.OTHER ->
+                                ToolsToast.show(t(API_TRANSLATE.error_unknown))
+                        }
+                    }
+                )
+            }.onError {
+                it.printStackTrace()
+                progressDialog.hide()
             }
         }
 
