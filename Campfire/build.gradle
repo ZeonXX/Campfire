@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 12804
-        versionName "1.284"
+        versionCode 12805
+        versionName "1.285"
         applicationId "com.dzen.campfire"
     }
 
