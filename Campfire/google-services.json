@@ -39,7 +39,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:276237287601:android:cbd136978e8fc1ea",
         "android_client_info": {
-          "package_name": "com.dzen.campfire"
+          "package_name": "sh.sit.campfire"
         }
       },
       "oauth_client": [

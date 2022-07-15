@@ -10,7 +10,7 @@ android {
         targetSdkVersion 31
         versionCode 12801
         versionName "1.281"
-        applicationId "com.dzen.campfire"
+        applicationId "sh.sit.campfire"
     }
 
     buildTypes {
