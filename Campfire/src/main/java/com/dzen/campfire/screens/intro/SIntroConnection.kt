@@ -14,6 +14,7 @@ import com.dzen.campfire.api.requests.accounts.RAccountsLogin
 import com.dzen.campfire.api.requests.accounts.RAccountsRegistration
 import com.dzen.campfire.app.App
 import com.dzen.campfire.screens.hello.SCampfireHello
+import com.google.firebase.auth.FirebaseAuth
 import com.sayzen.campfiresdk.controllers.*
 import com.sayzen.campfiresdk.models.objects.MChatMessagesPool
 import com.sayzen.devsupandroidgoogle.ControllerGoogleAuth
@@ -22,7 +23,6 @@ import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.navigator.Navigator
 import com.sup.dev.android.tools.ToolsBitmap
 import com.sup.dev.android.tools.ToolsResources
-import com.sup.dev.android.tools.ToolsStorage
 import com.sup.dev.android.tools.ToolsToast
 import com.sup.dev.java.libs.debug.err
 import com.sup.dev.java.tools.ToolsThreads
@@ -71,6 +71,13 @@ class SIntroConnection : Screen(R.layout.screen_intro_connection){
 
 
     private fun sendLoginRequest() {
+        val auth = FirebaseAuth.getInstance()
+        auth.currentUser?.getIdToken(true)
+            ?.addOnSuccessListener {
+                if (auth.currentUser?.isEmailVerified == true)
+                    it.token?.let { it1 -> ControllerApiLogin.setEmailToken(it1) }
+            }
+
         val account = ControllerApi.getLastAccount()
         if (account.id == 0L) {
             ControllerChats.clearMessagesCount()
