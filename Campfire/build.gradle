@@ -33,6 +33,7 @@ android {
 
 dependencies {
     implementation project(':CampfireSDK')
+    implementation 'com.google.firebase:firebase-auth-ktx:20.0.4'
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
