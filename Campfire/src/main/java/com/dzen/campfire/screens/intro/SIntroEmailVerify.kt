@@ -62,13 +62,13 @@ class SIntroEmailVerify(
                         }
                         .addOnFailureListener {
                             it.printStackTrace()
-                            ToolsToast.show(t(API_TRANSLATE.app_error))
+                            ToolsToast.show(it.localizedMessage ?: it.message)
                             progress.hide()
                         }
                 }
                 .addOnFailureListener {
                     it.printStackTrace()
-                    ToolsToast.show(t(API_TRANSLATE.app_error))
+                    ToolsToast.show(it.localizedMessage ?: it.message)
                     progress.hide()
                 }
         }

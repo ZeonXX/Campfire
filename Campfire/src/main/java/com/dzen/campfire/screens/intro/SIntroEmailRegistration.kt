@@ -99,7 +99,7 @@ class SIntroEmailRegistration(
                     }
                     .addOnFailureListener {
                         it.printStackTrace()
-                        ToolsToast.show(t(API_TRANSLATE.app_error))
+                        ToolsToast.show(it.localizedMessage ?: it.message)
                     }
                     .addOnCompleteListener {
                         progressDialog.hide()
@@ -107,7 +107,7 @@ class SIntroEmailRegistration(
             }
             .addOnFailureListener {
                 it.printStackTrace()
-                ToolsToast.show(t(API_TRANSLATE.app_error))
+                ToolsToast.show(it.localizedMessage ?: it.message)
                 progressDialog.hide()
             }
     }

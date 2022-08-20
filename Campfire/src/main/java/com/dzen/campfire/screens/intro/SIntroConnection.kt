@@ -71,18 +71,28 @@ class SIntroConnection : Screen(R.layout.screen_intro_connection){
 
 
     private fun sendLoginRequest() {
-        val auth = FirebaseAuth.getInstance()
-        auth.currentUser?.getIdToken(true)
-            ?.addOnSuccessListener {
-                if (auth.currentUser?.isEmailVerified == true)
-                    it.token?.let { it1 -> ControllerApiLogin.setEmailToken(it1) }
-            }
-
         val account = ControllerApi.getLastAccount()
         if (account.id == 0L) {
             ControllerChats.clearMessagesCount()
 
-            sendLoginRequestNow()
+
+
+            val auth = FirebaseAuth.getInstance()
+            setState(State.PROGRESS)
+            auth.currentUser?.getIdToken(true)
+                ?.addOnSuccessListener {
+                    if (auth.currentUser?.isEmailVerified == true) {
+                        it.token?.let { it1 -> ControllerApiLogin.setEmailToken(it1) }
+                        sendLoginRequestNow()
+                    } else {
+                        Navigator.replace(SIntroEmailVerify(false))
+                    }
+                }
+                ?.addOnFailureListener {
+                    ToolsToast.show(it.localizedMessage ?: it.message)
+                    setState(State.ERROR)
+                }
+
             if (ControllerNotifications.token.isEmpty())
                 ToolsThreads.timerMain(1000, 1000 * 60L, {
                     if (ControllerNotifications.token.isNotEmpty()) {
