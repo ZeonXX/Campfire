@@ -79,14 +79,14 @@ class SIntroEmail : Screen(R.layout.screen_intro_email){
                         Navigator.set(SIntroConnection())
                     }
                     .addOnFailureListener {
-                        ToolsToast.show(R.string.app_error)
+                        ToolsToast.show(it.localizedMessage ?: it.message)
                     }
                     .addOnCompleteListener {
                         progress.hide()
                     }
             }
             .addOnFailureListener {
-                ToolsToast.show(R.string.app_error)
+                ToolsToast.show(it.localizedMessage ?: it.message)
                 progress.hide()
             }
     }
