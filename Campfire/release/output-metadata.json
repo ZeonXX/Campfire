@@ -10,8 +10,8 @@
     {
       "type": "SINGLE",
       "filters": [],
-      "versionCode": 12900,
-      "versionName": "1.290",
+      "versionCode": 12901,
+      "versionName": "1.291",
       "outputFile": "Campfire-release.apk"
     }
   ]
