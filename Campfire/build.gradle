@@ -1,16 +1,18 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 31
+    compileSdk 33
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 31
+        applicationId "com.dzen.campfire"
+        minSdk 21
+        targetSdk 33
         versionCode 12901
         versionName "1.291"
-        applicationId "com.dzen.campfire"
     }
 
     buildTypes {
@@ -29,14 +31,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.dzen.campfire'
 }
 
 dependencies {
     implementation project(':CampfireSDK')
-    implementation 'com.google.firebase:firebase-auth-ktx:20.0.4'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         jvmTarget = "1.8"
     }
