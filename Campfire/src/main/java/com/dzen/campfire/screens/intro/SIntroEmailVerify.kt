@@ -53,7 +53,6 @@ class SIntroEmailVerify(
                                     progress.hide()
                                 }
                             } else {
-                                ControllerApiLogin.setEmailToken(it.token!!)
                                 ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
                                 Navigator.set(SIntroConnection())
 

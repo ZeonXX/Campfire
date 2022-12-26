@@ -51,7 +51,7 @@ class SIntroConnection : Screen(R.layout.screen_intro_connection){
         vChangeAccount.visibility = View.INVISIBLE
         vRetry.text = ToolsResources.s(R.string.retry)
         vChangeAccount.text = ToolsResources.s(R.string.app_change_account)
-        vRetry.setOnClickListener { sendLoginRequestNow() }
+        vRetry.setOnClickListener { sendLoginRequest() }
         vChangeAccount.setOnClickListener { Navigator.set(SIntroAccount()) }
         vMessage.text = ToolsResources.s(R.string.connection_error)
 
@@ -83,7 +83,6 @@ class SIntroConnection : Screen(R.layout.screen_intro_connection){
                 auth.currentUser?.getIdToken(true)
                     ?.addOnSuccessListener {
                         if (auth.currentUser?.isEmailVerified == true) {
-                            it.token?.let { it1 -> ControllerApiLogin.setEmailToken(it1) }
                             sendLoginRequestNow()
                         } else {
                             Navigator.replace(SIntroEmailVerify(false))

@@ -72,9 +72,8 @@ class SIntroEmail : Screen(R.layout.screen_intro_email){
                     Navigator.replace(SIntroEmailVerify(false))
                     return@addOnSuccessListener
                 }
-                authResult.user!!.getIdToken(false)
+                authResult.user!!.getIdToken(true)
                     .addOnSuccessListener {
-                        ControllerApiLogin.setEmailToken(it.token!!)
                         ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
                         Navigator.set(SIntroConnection())
                     }
