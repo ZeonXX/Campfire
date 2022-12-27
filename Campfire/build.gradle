@@ -11,8 +11,8 @@ android {
         applicationId "com.dzen.campfire"
         minSdk 21
         targetSdk 33
-        versionCode 12901
-        versionName "1.291"
+        versionCode 12902
+        versionName "1.292"
     }
 
     buildTypes {
