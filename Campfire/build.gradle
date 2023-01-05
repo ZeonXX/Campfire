@@ -8,11 +8,11 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "com.dzen.campfire"
         minSdkVersion 21
-        targetSdkVersion 33
-        versionCode 12912
-        versionName "1.2912"
+        targetSdkVersion 31
+        versionCode 13000
+        versionName "1.3"
+        applicationId "com.dzen.campfire"
     }
 
     buildTypes {

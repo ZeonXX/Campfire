@@ -35,6 +35,7 @@ import com.sayzen.campfiresdk.screens.fandoms.search.SFandomsSearch
 import com.sayzen.campfiresdk.screens.notifications.SNotifications
 import com.sayzen.campfiresdk.screens.post.bookmarks.SBookmarks
 import com.sayzen.campfiresdk.screens.post.drafts.SDrafts
+import com.sayzen.campfiresdk.screens.quests.SQuests
 import com.sayzen.campfiresdk.support.adapters.XAccount
 import com.sayzen.devsupandroidgoogle.ControllerFirebaseAnalytics
 import com.sup.dev.android.app.SupAndroid
@@ -71,6 +72,7 @@ class AppActivity : SActivity() {
     private var vUsers: SActivityType.NavigationItem? = null
     private var vDrafts: SActivityType.NavigationItem? = null
     private var vBookmarks: SActivityType.NavigationItem? = null
+    private var vQuests: SActivityType.NavigationItem? = null
     private var vOther: SActivityType.NavigationItem? = null
 
     var stackChats: NavigatorStack? = null
@@ -162,6 +164,10 @@ class AppActivity : SActivity() {
         vBookmarks = type.addNavigationItem(R.drawable.ic_bookmark_white_24dp, t(API_TRANSLATE.app_bookmarks), true, true) {
             ControllerFirebaseAnalytics.post("Root", "To Bookmarks")
             Navigator.toBackStackOrNew(SBookmarks())
+        }
+        vQuests = type.addNavigationItem(R.drawable.baseline_history_edu_white_24, t(API_TRANSLATE.quests), true, true) {
+            ControllerFirebaseAnalytics.post("Root", "To Quests")
+            Navigator.toBackStackOrNew(SQuests())
         }
         vOther = type.addNavigationItem(R.drawable.ic_settings_white_24dp, t(API_TRANSLATE.app_other), true, true) {
             ControllerFirebaseAnalytics.post("Root", "To Other")
