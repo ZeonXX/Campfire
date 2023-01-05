@@ -3,6 +3,7 @@ package com.dzen.campfire.screens.intro
 import android.view.View
 import android.widget.Button
 import com.dzen.campfire.R
+import com.google.firebase.auth.FirebaseAuth
 import com.sayzen.campfiresdk.controllers.ControllerApi
 import com.sayzen.campfiresdk.controllers.ControllerApiLogin
 import com.sayzen.campfiresdk.controllers.ControllerTranslate
@@ -10,6 +11,7 @@ import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.navigator.Navigator
 import com.sup.dev.android.tools.ToolsResources
 import com.sup.dev.android.tools.ToolsToast
+import com.sup.dev.android.tools.ToolsView
 import com.sup.dev.android.views.settings.SettingsField
 import com.sup.dev.java.tools.ToolsCryptography
 
@@ -56,14 +58,36 @@ class SIntroEmail : Screen(R.layout.screen_intro_email){
         vEnter.isEnabled = vEmail.getText().length >= 3 && vPass.getText().length >= 6
     }
 
+    val fbAuth by lazy { FirebaseAuth.getInstance() }
+
     fun enter(){
         val password = vPass.getText()
         val email = vEmail.getText()
         val passwordSha512 = ToolsCryptography.getSHA512(password)
 
-        ControllerApiLogin.setEmailToken(email, passwordSha512)
-        ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
-        Navigator.set(SIntroConnection())
+        val progress = ToolsView.showProgressDialog()
+        fbAuth.signInWithEmailAndPassword(email, passwordSha512)
+            .addOnSuccessListener { authResult ->
+                if (!authResult.user!!.isEmailVerified) {
+                    Navigator.replace(SIntroEmailVerify(false))
+                    return@addOnSuccessListener
+                }
+                authResult.user!!.getIdToken(true)
+                    .addOnSuccessListener {
+                        ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
+                        Navigator.set(SIntroConnection())
+                    }
+                    .addOnFailureListener {
+                        ToolsToast.show(it.localizedMessage ?: it.message)
+                    }
+                    .addOnCompleteListener {
+                        progress.hide()
+                    }
+            }
+            .addOnFailureListener {
+                ToolsToast.show(it.localizedMessage ?: it.message)
+                progress.hide()
+            }
     }
 
 }

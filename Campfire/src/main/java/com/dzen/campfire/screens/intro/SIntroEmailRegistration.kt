@@ -9,6 +9,8 @@ import com.dzen.campfire.api.API_TRANSLATE
 import com.dzen.campfire.api.requests.accounts.RAccountsAddEmail
 import com.dzen.campfire.api.requests.accounts.RAccountsGetCaptchaSiteKey
 import com.dzen.campfire.api.requests.accounts.RAccountsRegistrationEmail
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.sayzen.campfiresdk.app.CampfireConstants
 import com.sayzen.campfiresdk.controllers.ControllerApi
 import com.sayzen.campfiresdk.controllers.ControllerApiLogin
@@ -40,6 +42,7 @@ class SIntroEmailRegistration(
     val vLogo: View = findViewById(R.id.vLogo)
 
     var bestHeight = 0
+    private val fbAuth by lazy { Firebase.auth }
 
     init {
         activityRootBackground = ToolsResources.getColorAttr(R.attr.colorPrimary)
@@ -59,7 +62,7 @@ class SIntroEmailRegistration(
         ToolsView.makeLinksClickable(vText)
         vCheck.text = t(API_TRANSLATE.app_i_agree)
         vCheck.setOnCheckedChangeListener { _, b -> updateEnterEnabled() }
-        vEnter.setOnClickListener { onEnter() }
+        vEnter.setOnClickListener { onEnterNew() }
 
         if(addMode){
             vText.visibility = View.GONE
@@ -82,58 +85,30 @@ class SIntroEmailRegistration(
         vEnter.isEnabled = ToolsText.isValidEmailAddress(vEmail.getText()) && vPass1.getText().length >= API.ACCOUNT_PASSOWRD_L_MIN && vPass2.getText() == vPass1.getText() && (addMode || vCheck.isChecked)
     }
 
-    fun onEnter(){
+    fun onEnterNew() {
         val password = vPass1.getText()
         val email = vEmail.getText()
         val passwordSha512 = ToolsCryptography.getSHA512(password)
 
-        if(addMode){
-            ApiRequestsSupporter.executeProgressDialog(RAccountsAddEmail(email, passwordSha512)) { r ->
-                ControllerApiLogin.setEmailToken(email, passwordSha512)
-                ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
-                Navigator.remove(this)
-            }
-        } else {
-            val progressDialog = ToolsView.showProgressDialog()
-            ApiRequestsSupporter.execute(RAccountsGetCaptchaSiteKey()) {
-                ControllerCaptcha.setSiteKey(it.siteKey)
-                ControllerCaptcha.showChallenge(
-                    context = this.context,
-                    onSuccess = { captchaKey ->
-                        ApiRequestsSupporter.execute(
-                            RAccountsRegistrationEmail(
-                                email, passwordSha512,
-                                ControllerApi.getLanguageId(),
-                                captchaKey
-                            )
-                        ) {
-                            ControllerApiLogin.setEmailToken(email, passwordSha512)
-                            ControllerApiLogin.setLoginType(ControllerApiLogin.LOGIN_EMAIL)
-                            ToolsStorage.put(CampfireConstants.CHECK_RULES_ACCEPTED, true)
-                            Navigator.set(SIntroConnection())
-                        }.onFinish {
-                            progressDialog.hide()
-                        }
-                    },
-                    onError = { captchaError ->
-                        progressDialog.hide()
-                        when (captchaError) {
-                            ControllerCaptcha.CaptchaError.NETWORK ->
-                                ToolsToast.show(t(API_TRANSLATE.error_network))
-                            ControllerCaptcha.CaptchaError.TIMEOUT ->
-                                ToolsToast.show(t(API_TRANSLATE.error_unknown))
-                            ControllerCaptcha.CaptchaError.CLOSED -> {}
-                            ControllerCaptcha.CaptchaError.OTHER ->
-                                ToolsToast.show(t(API_TRANSLATE.error_unknown))
-                        }
+        val progressDialog = ToolsView.showProgressDialog()
+        fbAuth.createUserWithEmailAndPassword(email, passwordSha512)
+            .addOnSuccessListener { authResult ->
+                authResult.user!!.sendEmailVerification()
+                    .addOnSuccessListener {
+                        Navigator.to(SIntroEmailVerify(addMode))
                     }
-                )
-            }.onError {
+                    .addOnFailureListener {
+                        it.printStackTrace()
+                        ToolsToast.show(it.localizedMessage ?: it.message)
+                    }
+                    .addOnCompleteListener {
+                        progressDialog.hide()
+                    }
+            }
+            .addOnFailureListener {
                 it.printStackTrace()
+                ToolsToast.show(it.localizedMessage ?: it.message)
                 progressDialog.hide()
             }
-        }
-
     }
-
 }

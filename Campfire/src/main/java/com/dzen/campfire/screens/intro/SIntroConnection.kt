@@ -14,6 +14,7 @@ import com.dzen.campfire.api.requests.accounts.RAccountsLogin
 import com.dzen.campfire.api.requests.accounts.RAccountsRegistration
 import com.dzen.campfire.app.App
 import com.dzen.campfire.screens.hello.SCampfireHello
+import com.google.firebase.auth.FirebaseAuth
 import com.sayzen.campfiresdk.controllers.*
 import com.sayzen.campfiresdk.models.objects.MChatMessagesPool
 import com.sayzen.devsupandroidgoogle.ControllerGoogleAuth
@@ -22,7 +23,6 @@ import com.sup.dev.android.libs.screens.Screen
 import com.sup.dev.android.libs.screens.navigator.Navigator
 import com.sup.dev.android.tools.ToolsBitmap
 import com.sup.dev.android.tools.ToolsResources
-import com.sup.dev.android.tools.ToolsStorage
 import com.sup.dev.android.tools.ToolsToast
 import com.sup.dev.java.libs.debug.err
 import com.sup.dev.java.tools.ToolsThreads
@@ -51,7 +51,7 @@ class SIntroConnection : Screen(R.layout.screen_intro_connection){
         vChangeAccount.visibility = View.INVISIBLE
         vRetry.text = ToolsResources.s(R.string.retry)
         vChangeAccount.text = ToolsResources.s(R.string.app_change_account)
-        vRetry.setOnClickListener { sendLoginRequestNow() }
+        vRetry.setOnClickListener { sendLoginRequest() }
         vChangeAccount.setOnClickListener { Navigator.set(SIntroAccount()) }
         vMessage.text = ToolsResources.s(R.string.connection_error)
 
@@ -75,7 +75,27 @@ class SIntroConnection : Screen(R.layout.screen_intro_connection){
         if (account.id == 0L) {
             ControllerChats.clearMessagesCount()
 
-            sendLoginRequestNow()
+
+
+            val auth = FirebaseAuth.getInstance()
+            setState(State.PROGRESS)
+            if (auth.currentUser != null) {
+                auth.currentUser?.getIdToken(true)
+                    ?.addOnSuccessListener {
+                        if (auth.currentUser?.isEmailVerified == true) {
+                            sendLoginRequestNow()
+                        } else {
+                            Navigator.replace(SIntroEmailVerify(false))
+                        }
+                    }
+                    ?.addOnFailureListener {
+                        ToolsToast.show(it.localizedMessage ?: it.message)
+                        setState(State.ERROR)
+                    }
+            } else {
+                sendLoginRequestNow()
+            }
+
             if (ControllerNotifications.token.isEmpty())
                 ToolsThreads.timerMain(1000, 1000 * 60L, {
                     if (ControllerNotifications.token.isNotEmpty()) {
