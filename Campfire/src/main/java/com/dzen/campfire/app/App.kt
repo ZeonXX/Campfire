@@ -66,7 +66,7 @@ class App : Application() {
 
         SGoogleRules.CHECK_FLAG_IN_ACCOUNT_SETTINGS = true
 
-        // ControllerCampfireSDK.IS_DEBUG = isDebug()
+        ControllerCampfireSDK.IS_DEBUG = isDebug()
         ControllerCampfireSDK.ENABLE_CLOSE_FANDOM_ALERT = true
 
         ControllerCampfireSDK.ON_SCREEN_CHAT_START = { activity().setChatStack() }
